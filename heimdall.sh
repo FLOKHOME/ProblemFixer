@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#source <(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/build.func)
+source <(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/build.func)
 # Copyright (c) 2021-2024 tteck
 # Author: tteck (tteckster)
 # License: MIT
@@ -74,8 +74,8 @@ if [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt)" ]] || [[ ! -f /opt/${APP}
   VER=$(curl -s https://api.github.com/repos/linuxserver/Heimdall/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
   cp -R Heimdall-${VER}/* /opt/Heimdall
   cd /opt/Heimdall
-  apt-get install -y composer &> /dev/null
-  COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload &> /dev/null
+  apt-get install -y composer &>/dev/null
+  COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload &>/dev/null
   echo "${RELEASE}" >/opt/${APP}_version.txt
   msg_ok "Updated Heimdall Dashboard to ${RELEASE}"
 
